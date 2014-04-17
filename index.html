@@ -1,0 +1,151 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<script type='text/javascript' src='jquery.js'></script>
+	<!-- <script type='text/javascript' src='IndexedDBShim.min.js'></script> -->
+	<script type='text/javascript' src='db.js'></script>
+	<script type='text/javascript' src='functions.js'></script>
+	<script type='text/javascript' src='moment-with-langs.min.js'></script>
+	<link rel='stylesheet' type='text/css' href='style.css' media='all'>
+</head>
+<body>
+
+<div id='pages'>
+	<div class='page' id='home' data-pagename='Αρχική' data-pageparent='' data-inmenu='1'>
+		<ul>
+			<li><a class='button' href='#settings'>Επιλογές</a></li>
+			<li><a class='button' href='#barcodes'>Ανάγνωση Barcodes</a></li>
+		</ul>
+	</div>
+
+	<div class='page' id='settings' data-pagename='Επιλογές' data-pageparent='home' data-inmenu='1'>
+		<ul class='level1'>
+		<li>
+			<h1>Τερματικό</h1>
+			<div class='whenterminaldefined'><span class='terminalName'></span><br><a class='button' href='#defineterminal'>Αλλαγή</a></div>
+			<div class='whenterminalundefined'><span class='errortext'>Δεν έχει οριστεί τερματικό</span><br><a class='button' href='#defineterminal'>Ορισμός τερματικού</a></div>
+		</li>
+		<li>
+			<h1 class='activeShowsHeader'>Ενεργή παράσταση</h1>
+			<ul class='activeShows'></ul>
+			<a class='button' href='#setactiveshows'>Επιλογή παραστάσεων</a>
+		</li>		
+		<li>
+			<h1 class=''>Αποδεκτά barcode</h1>
+			<ul class='barcodeTypes'>
+				<li class='barcodeTypeShowSeat switch_parent' data-field='barcode_showid_seatid' data-value=''>10 ψηφία (showid-seatid)
+					<span class='nowrap'>
+						<a href='#' class='switch yes' data-value='1'>Ναι</a>			
+						<a href='#' class='switch no' data-value='0'>Οχι</a>
+					</span>
+				</li>
+				<li class='barcodeTypeTransShowSeat switch_parent' data-field='barcode_transcode_showid_seatid' data-value=''>&gt; από 10 ψηφία (transcode-showid-seatid)
+					<span class='nowrap'>
+						<a href='#' class='switch yes' data-value='1'>Ναι</a>			
+						<a href='#' class='switch no' data-value='0'>Οχι</a>
+					</span>
+				</li>	
+			</ul>
+		</li>
+		<li>
+			<h1 class=''>Αναμονή συγκεκριμένων εισιτηρίων</h1>
+			<ul class='barcodeSpecific'>
+				<li class='switch_parent' data-field='barcodes_specific' data-value=''>Ο server θα ορίσει συγκεκριμένα barcodes που περιμένετε
+					<span class='nowrap'>
+						<a href='#' class='switch yes' data-value='1'>Ναι</a>			
+						<a href='#' class='switch no' data-value='0'>Οχι</a>
+					</span>
+				</li>
+			</ul>
+		</li>	
+		</ul>
+	</div>
+
+	<div class='page' id='defineterminal' data-pagename='Ορισμός τερματικού' data-pageparent='settings' data-inmenu='1'>
+		<form action='' method='post'>
+			<div>
+				<label>Εισαγετε τον κωδικό του τερματικού σας</label>
+			</div>
+			<div>
+				<input type='text' id='fldterminalcode' name='terminalcode' value='' class='autofocus'> <input type='submit' id='' value='Καταχώρηση'>
+			</div>
+			<div class='msg'>
+			</div>
+		</form>
+	</div>	
+
+	<div class='page' id='setactiveshows' data-pagename='Ορισμός ενεργών παραστάσεων' data-pageparent='settings' data-inmenu='1'>
+		<form action='' method='post'>
+			<div class='headinfo'>
+				<h2>Επιλέξτε παραστάσεις που θα χαρακτηριστούν «ενεργές»</h2>
+				Επιλεγμένες παραστάσεις: <span id='countshowsactive'></span> από <span id='countshowsall'></span>
+			</div>
+			<div class='buttonbar'>
+				<div style='float: left'>
+					<label><input type='checkbox' id='onlyfutureshows'> Μόνο επόμενες παραστάσεις</label><br>
+				</div>
+				<div style='float: right'>
+					<button id='loadshowsfromserver' class='button'>Φόρτωση παραστάσεων από τον server</button> <span class='msg'></span>
+				</div>
+				<div class='clear'></div>
+			</div>
+			<div class='tableheader'>
+				<table class='shows showsheader'></table>
+			</div>
+			<div class='tabledata'>
+				<table class='shows showsdata'></table>
+			</div>
+		</form>
+	</div>		
+
+	<div class='page' id='barcodes' data-pagename='Ανάγνωση' data-pageparent='home' data-inmenu='1'>
+		<div class='whenterminalundefined'>
+			<span class='errortext'>Πρέπει να ορίσετε το τερματικό σας: </span><a href='#defineterminal'>Ορισμός τερματικού</a>
+		</div>
+		<div class="whenterminaldefined">
+			
+			<div class='right'>
+				<div class='modes'>
+					<div>Ορισμός διαδικασίας</div>
+					<div class='buttonpair'>
+						<div class='mode enter' data-mode='enter'>Είσοδος</div><br>
+						<div class='keep enter' data-mode='enter'>Διατήρηση</div>
+					</div>
+					<div class='buttonpair'>
+						<div class='mode exit' data-mode='exit'>Εξοδος</div><br>
+						<div class='keep exit' data-mode='exit'>Διατήρηση</div>
+					</div>
+					<div class='synchronize'>
+						<div><button id='btnsynchronize'>Συγχρονισμός με server</button></div>
+						<div class='status'></div>
+					</div>
+					<div class='testentries'>
+						<button onclick='javascript:entriesLog();'>Show entries</button>
+					</div>
+				</div>
+				<div class='clear'></div>
+			</div>
+
+			<div class='left'>
+				<div class='inputbox'>
+					<div>
+						<label for='fldbarcode'>Ανάγνωση κωδικού barcode</label><br>
+					</div>
+					<div>
+						<input type='text' id='fldbarcode' value='' class='autofocus'> <input type='button' id='btnbarcode' value='Έλεγχος'>
+					</div>
+				</div>
+				<div class='clear'></div>
+				<div class='bigmessage'></div>
+				<div class="history"></div>
+				<div class='clear'></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

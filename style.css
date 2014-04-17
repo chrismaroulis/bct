@@ -1,0 +1,345 @@
+html { 
+	font-size: 15px;
+}
+
+* { box-sizing: border-box ;}
+
+body { 
+	font-size: 1rem;
+}
+
+div.clear { 
+	clear: both;
+}
+
+h1 { font-size: 1.6rem }
+h2 { font-size: 1.4rem }
+h3 { font-size: 1.2rem }
+h4 { font-size: 1rem }
+h5 { font-size: 0.8rem }
+h6 { font-size: 0.6rem }
+
+h1,h2,h3,h4,h5,h6 { padding: 0; margin: 0; }
+
+.errortext { 
+	color: red;
+}
+
+.oktext {
+	color: green;
+}
+
+#pages .page { 
+	display: none;
+}
+
+#pages .page.current { 
+	display: block;
+}
+
+#pages .page .topbar { 
+	background-color: #B3FFFF;
+	color: blue;
+}
+
+#pages .page .topbar a { 
+	text-decoration: none;
+	color: blue;
+}
+
+#barcodes .history div.entry {
+	margin-top: 2px;	
+}
+
+#home ul { 
+	list-style-type: none;
+	padding: 0;
+	width: 50%;
+	min-width: 20rem;
+	margin: 2rem auto 1rem auto;
+}
+
+#home ul li { 
+	height: 2rem;
+	line-height: 2rem;
+	margin-bottom: 1rem;
+	/* background-color: #F0F0F0; */
+	text-align: center;
+}
+
+#home ul li a.button { 
+	display: block;
+}
+
+div.clear { clear: both;}
+
+a { 
+	color: black;
+}
+
+.button { 
+	background-color: #F0F0F0;
+	text-decoration: none;
+	box-shadow: 3px 3px 2px black;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	padding: 3px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 2px;
+}
+
+
+#barcodes .history div.entry > span { 
+	font-size: 0.8rem;
+	padding: 2px 2px;
+	margin-left: 1rem;
+	display: inline-block;
+}
+
+#barcodes .history div.entry.ok > span { 
+	color: #008040;
+}
+
+#barcodes .history div.entry.error > span { 
+	color: #CC0000;
+}
+
+#barcodes .right { 
+	float: right;
+	width: 20%;
+	min-width: 10rem;
+}
+
+#barcodes .left { 
+	overflow-x: hidden;
+}
+
+#barcodes div.inputbox { 
+	float: left;
+	margin-top: 1rem;
+}
+
+#barcodes #fldbarcode { 
+	height: 3rem;
+	width: 15rem;
+	margin: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	display: inline-block;
+	border: 1px solid black;
+	vertical-align: middle;
+}
+
+#barcodes #btnbarcode { 
+	height: 3rem;
+	width: 12rem;
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+	line-height: 1rem;
+	display: inline-block;
+	border: 1px solid black;
+	vertical-align: middle;
+}
+
+#barcodes .bigmessage { 
+	margin: 1rem 0;
+	padding: 0.5rem;
+}
+
+#barcodes .bigmessage.ok { 
+	background-color: #008040;
+	color: white;
+}
+
+#barcodes .bigmessage.error { 
+	background-color: #DF0000;
+	color: white;
+}
+
+#barcodes .bigmessage span.barcode {
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+}
+
+#barcodes .bigmessage span.msg { 
+	min-height: 3rem;
+	text-align: center;
+	font-size: 3rem;
+	line-height: 3rem;
+	display: block;
+}
+
+#barcodes .bigmessage span.details { 
+	min-height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	font-size: 1rem;
+	display: block;
+}
+
+#barcodes .modes { 
+	float: left;
+	margin-left: 3rem;
+	margin-top: 1rem;
+	text-align: center;
+}
+
+#barcodes .buttonpair { 
+	display: inline-block;
+	text-align: center;
+	margin-top: 1rem;
+}
+
+#barcodes .modes .mode { 
+	height: 3rem;
+	width: 6rem;
+	line-height: 3rem;
+	border: 1px solid black;
+	padding: 0.5rem;
+	box-shadow: 2px 2px 3px black;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+}
+
+#barcodes .modes .keep { 
+	height: 1.3rem;
+	width: 6rem;
+	line-height: 1rem;
+	border: 1px solid black;
+	padding: 0.1rem 0.5rem;
+	box-shadow: 2px 2px 3px black;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 0.5rem;
+}
+
+#barcodes .modes .selected { 
+	background-color: green;
+	color: white;
+	border: 1px solid white;
+}
+
+#barcodes div.synchronize { 
+	margin-top: 1rem;
+}
+
+#barcodes div.synchronize div.status { 
+	font-size: 1rem;
+}
+
+#settings ul.level1 { 
+
+}
+
+#settings ul.level1 > li { 
+	margin-bottom: 1.5rem;
+}
+
+#settings ul.activeshows { 
+	min-height: 1rem;
+	padding: 0.3rem;
+}
+
+
+.terminalundefined .whenterminalundefined { display: block; }
+.terminaldefined .whenterminalundefined { display: none; }
+.terminaldefined .whenterminaldefined { display: block; }
+.terminalundefined .whenterminaldefined { display: none; }
+
+#setactiveshows .headinfo {
+	text-align: center;
+}
+
+#setactiveshows div.tableheader { 
+	margin: 0 auto;
+	width: 80%;
+}
+
+#setactiveshows div.tabledata { 
+	min-height: 4rem;
+	max-height: 30rem;
+	overflow-y: scroll;
+	margin: 0 auto;
+	width: 80%;
+}
+
+#setactiveshows table.shows { 
+	border-collapse: collapse;
+	margin-top: 1.5rem;
+	table-layout: fixed;
+	font-size: 1rem;
+	width: 100%;
+}
+
+#setactiveshows table.shows.showsdata { 
+	margin-top: 0rem;
+}
+
+#setactiveshows table.shows td { 
+	padding: 0.4rem 0.1rem;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	vertical-align: middle;
+	overflow-x: hidden;
+}
+
+#setactiveshows table.shows th { 
+	padding: 0rem 0.1rem;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+
+#setactiveshows table.shows .showid { 
+	padding-right: 1rem;
+}
+
+#setactiveshows table.shows .showtitle { 
+	padding-left: 1rem;
+}
+
+#setactiveshows table.shows .showvenue { 
+	padding-left: 1rem;
+}
+
+#setactiveshows table.shows tr.active { 
+	background-color: #00AE00;
+	color: white;
+}
+
+#setactiveshows table.shows tr .check { width: 1.1rem; }
+#setactiveshows table.shows tr .showid { width: 2rem; }
+#setactiveshows table.shows tr .showday { width: 5rem; }
+#setactiveshows table.shows tr .showdate { width: 5rem; }
+#setactiveshows table.shows tr .showtime { width: 5rem; }
+#setactiveshows table.shows tr .showtitle { width: 5rem; }
+#setactiveshows table.shows tr .showvenue { width: 5rem; }
+
+#setactiveshows table.showsdata tr.older { color: #A0A0A0;}
+#setactiveshows.onlyfutureshows table.showsdata tr.older { display: none;}
+
+.switch {
+	display: inline-block;
+	padding: 0.2rem;
+	border: 1px dotted gray;
+	margin: 0.5rem;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+}
+
+.switch.selected { 
+	border: 2px solid black;
+	background-color: #F0F0F0;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
